@@ -3,7 +3,6 @@ filename="" #put name of compiled file here
 argv="" #put your argv parameters here
 outputfile="" #put name of the outputfile here
 gradingfile="" #put name of file with correct output here
-timelimit=5 #set time limit in seconds here
 compilepoints=15 #change the points for an successful compilation here
 
 #don't change below this line unless you know what you are doing
@@ -28,36 +27,30 @@ if [ $compiled -eq 1 ]
         then 
             rm "$outputfile" # remove previous outputfiles if they exist
         fi
-        timeout "$timelimit"s ./"$filename" "$argv" > "$outputfile"
-        timeout_status=$?
+        ./"$filename" "$argv" > "$outputfile"
         echo "Running: ./$filename $argv > $outputfile"
-        if [ $timeout_status -eq 124 ]
+        incorrect=$(diff -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+        total=$(wc -l < "$gradingfile" | tr -d '[:space:]')
+        if [ "$incorrect" -eq 0 ]
         then 
-        echo "Runtime exceeded"
-        grade=$earnedpoints
-        else 
-            incorrect=$(diff -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
-            total=$(wc -l < "$gradingfile" | tr -d '[:space:]')
-            if [ "$incorrect" -eq 0 ]
-            then 
-                correct=$total
-                echo "Your output is correct ($correct/$total)"
-            else
-                correct=$((total - incorrect))
-                echo "Your output is not correct, you missed $incorrect out of $total"
-                echo "--------------------"
-                echo "Expected output"
-                cat "$gradingfile"
-                echo "--------------------"
-                echo "Your output"
-                cat "$outputfile"
-                echo "--------------------"
-                echo "Your differences"
-                diff "$outputfile" "$gradingfile"
-            fi
-            grade=$(echo "scale=10; $correct / $total * $((100 - earnedpoints)) + $earnedpoints" | bc)
+            correct=$total
+            echo "Your output is correct ($correct/$total)"
+        else
+            correct=$((total - incorrect))
+            echo "Your output is not correct, you missed $incorrect out of $total"
+            echo "--------------------"
+            echo "Expected output"
+            cat "$gradingfile"
+            echo "--------------------"
+            echo "Your output"
+            cat "$outputfile"
+            echo "--------------------"
+            echo "Your differences"
+            diff "$outputfile" "$gradingfile"
         fi
-fi 
+        grade=$(echo "scale=10; $correct / $total * $((100 - earnedpoints)) + $earnedpoints" | bc)
+fi
+ 
 echo "-------------------------"
 printf "Final grade: %.2f\n" "$grade"
 echo "-------------------------"
