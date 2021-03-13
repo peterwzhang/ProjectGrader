@@ -17,7 +17,7 @@ This is a simple project grader shell script. It is made to emulate the grading 
 - The two main versions require "timeout" which is included in [coreutils](https://www.gnu.org/software/coreutils/).
 - There will be two less maintained versions "GradingScriptNT.sh" and "GradingScriptNTP.sh" that do not use timeout and run the same as their timeout counterparts minus the fact they can not do runtime tests.
 - This script as of right now does not check for "correct" parameters or other issues such as having the wrong grading file. This can cause some unexpected behavior if you do not use the script correctly.
-- You can find an example of "GradingScript.sh" [here]().
+- You can find an example of "GradingScript.sh" [here](https://github.com/PeterTheAmazingAsian/ProjectGrader/tree/master/src/example).
 
 ## Usage
 1. After downloading the scripts place one (or all) in a directory, then navigate to that directory in a terminal.

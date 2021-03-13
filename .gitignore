@@ -1,11 +1,12 @@
 #ignore unneeded proj files
 *.code-workspace
-*.exe
-*.out
-*.dat
-*.txt
 *.cpp
+*.dat
+*.DS_Store
+*.exe
 *.h
+*.out
+*.txt
 /src/example/Testing
 
 #allow these files in example folder
