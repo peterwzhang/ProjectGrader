@@ -1,0 +1,15 @@
+#ignore unneeded proj files
+*.code-workspace
+*.exe
+*.out
+*.dat
+*.txt
+*.cpp
+*.h
+/src/example/Testing
+
+#allow these files in example folder
+!/src/example/test.cpp
+!/src/example/makefile
+!/src/example/correct.out
+!/src/example/test.cpp
