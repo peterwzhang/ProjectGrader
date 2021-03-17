@@ -1,5 +1,5 @@
 # Project Grader
-This is a simple project grader shell script. It is made to emulate the grading done in my Data Structures and Algorithm class.
+This is a simple project grader shell script. It is made to emulate the grading done in the Data Structures and Algorithm class I am taking.
 
 ## Features
 - Adjustable runtime check by giving the program a certain amount of time to run. 
