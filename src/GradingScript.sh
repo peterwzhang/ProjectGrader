@@ -5,7 +5,7 @@ outputfile="" #put name of the outputfile here
 gradingfile="" #put name of file with correct output here
 timelimit=5 #set time limit in seconds here
 compilepoints=15 #change the points for an successful compilation here
-
+ignore_whitespace="Y" #put "Y" to ignore whitespace, put "N" to grade white space
 #don't change below this line unless you know what you are doing
 compiled=0 
 earnedpoints=0
@@ -36,7 +36,12 @@ if [ $compiled -eq 1 ]
         echo "Runtime exceeded"
         grade=$earnedpoints
         else 
-            incorrect=$(diff -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+            if [ "$ignore_whitespace" = "Y" ]
+            then
+                incorrect=$(diff -w -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+            else
+                incorrect=$(diff -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+            fi
             total=$(wc -l < "$gradingfile" | tr -d '[:space:]')
             if [ "$incorrect" -eq 0 ]
             then 
@@ -53,7 +58,12 @@ if [ $compiled -eq 1 ]
                 cat "$outputfile"
                 echo "--------------------"
                 echo "Your differences"
-                diff "$outputfile" "$gradingfile"
+                if [ "$ignore_whitespace" = "Y" ]
+                then
+                    diff -w "$outputfile" "$gradingfile"
+                else
+                    diff "$outputfile" "$gradingfile"
+                fi
             fi
             grade=$(echo "scale=10; $correct / $total * $((100 - earnedpoints)) + $earnedpoints" | bc)
         fi

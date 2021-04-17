@@ -12,6 +12,9 @@ echo "Type the time limit in seconds (ex: 5), followed by [ENTER]:"
 read -r timelimit
 echo "Type the number of points for a successful compilation, followed by [ENTER]:"
 read -r compilepoints
+echo "Do you want to ignore whitespace?"
+echo "Type Y or N, followed by [ENTER]:"
+read -r ignore_whitespace
 compiled=0 
 earnedpoints=0
 if make # test if the make file works
@@ -41,7 +44,12 @@ if [ $compiled -eq 1 ]
         echo "Runtime exceeded"
         grade=$earnedpoints
         else 
-            incorrect=$(diff -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+            if [ "$ignore_whitespace" = "Y" ]
+            then
+                incorrect=$(diff -w -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+            else
+                incorrect=$(diff -y --suppress-common-lines "$outputfile" "$gradingfile" | wc -l | tr -d '[:space:]')
+            fi
             total=$(wc -l < "$gradingfile" | tr -d '[:space:]')
             if [ "$incorrect" -eq 0 ]
             then 
@@ -58,7 +66,12 @@ if [ $compiled -eq 1 ]
                 cat "$outputfile"
                 echo "--------------------"
                 echo "Your differences"
-                diff "$outputfile" "$gradingfile"
+                if [ "$ignore_whitespace" = "Y" ]
+                then
+                    diff -w "$outputfile" "$gradingfile"
+                else
+                    diff "$outputfile" "$gradingfile"
+                fi
             fi
             grade=$(echo "scale=10; $correct / $total * $((100 - earnedpoints)) + $earnedpoints" | bc)
         fi
