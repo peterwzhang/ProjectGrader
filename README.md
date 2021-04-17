@@ -1,5 +1,5 @@
 # Project Grader
-This is a simple project grader shell script. It is made to emulate the grading done in my Data Structures and Algorithm class.
+This is a simple project grader shell script. It is made to emulate the grading done in the Data Structures and Algorithm class I am taking.
 
 ## Features
 - Adjustable runtime check by giving the program a certain amount of time to run. 
@@ -24,7 +24,7 @@ This is a simple project grader shell script. It is made to emulate the grading 
 1. After downloading the scripts place one (or all) in a directory, then navigate to that directory in a terminal.
 2. Place your makefile and project file(s) in the same directory as the script.
 3. Place your grading file (text file with correct output) in the same directory as the script.
-    1. If you are using "GradingScript.sh" or "GradingScriptNT.sh" you need to edit the first lines 2-7 to change the parameters.
+    1. If you are using "GradingScript.sh" or "GradingScriptNT.sh" you need to edit the first lines 2-8 to change the parameters.
     2. If you are using "GradingScriptP.sh" or "GradingScriptNTP.sh" it will ask you for parameters everytime you run the file.
 4. Run the script using bash scriptname.sh 
     1. Example usage: bash GradingScript.sh
