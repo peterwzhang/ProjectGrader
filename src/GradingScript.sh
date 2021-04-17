@@ -5,7 +5,7 @@ outputfile="" #put name of the outputfile here
 gradingfile="" #put name of file with correct output here
 timelimit=5 #set time limit in seconds here
 compilepoints=15 #change the points for an successful compilation here
-ignore_whitespace="Y" #put "Y" to ignore whitespace, put "N" to grade white space
+ignore_whitespace="N" #put "Y" to ignore whitespace, put "N" to grade white space
 #don't change below this line unless you know what you are doing
 compiled=0 
 earnedpoints=0
