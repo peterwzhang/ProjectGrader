@@ -31,4 +31,4 @@ This is a simple project grader shell script. It is made to emulate the grading 
     2. If you ran "GradingScriptP.sh" or "GradingScriptNTP.sh" it will ask you to put in parameters before it runs, follow the prompts in the terminal.
 5. The script should output the results in the terminal.
 
-## [Changelog (click to open)]()
+## [Changelog (click to open)](https://github.com/PeterTheAmazingAsian/ProjectGrader/blob/master/CHANGELOG.md)
