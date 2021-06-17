@@ -1,2 +1,2 @@
 all:
-	g++ test.cpp -o Testing
+	g++ example1.cpp -o example1

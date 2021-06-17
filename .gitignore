@@ -6,11 +6,6 @@
 *.exe
 *.h
 *.out
-*.txt
-/src/example/Testing
-
+*.txts
 #allow these files in example folder
-!/src/example/test.cpp
-!/src/example/makefile
-!/src/example/correct.out
-!/src/example/test.cpp
+!/src/example/*
