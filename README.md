@@ -3,7 +3,7 @@ This is a simple project grader shell script. It is made to emulate the grading 
 
 ## Features
 - Adjustable runtime check by giving the program a certain amount of time to run. 
-- Compiles files into an executable using a makefile (using "make") then checks that the makefile compiles properly and the executable is named correctly.
+- Compiles C/C++ files into an executable using a makefile (using "make") then checks that the makefile compiles properly and the executable is named correctly.
 - Customizable parameters via `grading_config.ini` or command line.
 - Grades by giving an adjustable amount of points for a successful compile, then each line is worth an equal amount of the remaining points.
 - Shows expected output, actual output, and the differences between the two. This can ignore whitespace differences, if desired.
